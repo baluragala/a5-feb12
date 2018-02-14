@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 /*
  1. class
@@ -10,12 +10,20 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-header",
   template: `
-    <header>
-      <h1>E-Store App (inline)</h1>
+    <header (click)="handleClick()">
+      <h1>{{ mainTitle }}</h1>
+      <h3>{{ subTitle }}</h3>
     </header>
   `,
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent {
-  mainTitle = "E-Store App";
+  @Input() mainTitle;
+  @Input() subTitle;
+
+  @Output() onHeaderClick: EventEmitter<string> = new EventEmitter();
+
+  handleClick() {
+    this.onHeaderClick.emit("Header clicked!!");
+  }
 }
