@@ -1,0 +1,6 @@
+<div class="product">
+  <h2>{{item.title}}</h2>
+  <h3>{{item.price|currency}}</h3>
+  <p>stock available:{{item.stock}}</p>
+  <button class="add-to-cart" (click)="onAddToCartClick(item)">Add to cart</button>
+</div>

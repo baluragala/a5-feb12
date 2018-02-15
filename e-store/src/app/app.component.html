@@ -1,32 +1,7 @@
-<!-- <app-header [mainTitle]="appTitle" [subTitle]="'An online audio store'" (onHeaderClick)="handleHeaderClicked($event)"></app-header>
-<app-header [mainTitle]="'E-Video'" [subTitle]="'An online audio store'"></app-header>
-<p #para id="subtitle" style="color:green">Welcome to {{title | uppercase }}</p>
-<button [class]="btnClassName" (click)="handleClick($event)">Click Me!!</button>
-<button (click)="make250()">250</button>
-<button (click)="make300()">300</button>
-{{ user.address?.city}} -->
-
-<!-- <ul>
-    <li *ngFor="let f of ['apple','banana','chikko','berry']; let i=index;">
-        <p *ngIf="i % 2 == 0 else hiddenProduct">{{i + "::" + f}}</p>
-    </li>
-
-    <ng-template #hiddenProduct>
-        "NOT SHOWN"
-    </ng-template>
-
-    <div [ngSwitch]="100">
-        <p *ngSwitchCase="10">GOOD</p>
-        <p *ngSwitchCase="20">BAD</p>
-        <p *ngSwitchCase="30">UGLY</p>
-        <p *ngSwitchDefault>NOT KNOWN</p>
-    </div>
-</ul>
-
-<h2 [ngStyle]="h2Style">Awesome Style</h2>
-<h2 [ngClass]="{'header2':false,'main':false}">Awesome Class</h2> -->
-
-{{ 100 | currency:'INR'}}
-<p>{{ 1234567 | number:'3.1-4'}}</p>
-<p>{{ today | date:'medium' }}</p>
-<p>{{ 9 | topower:2:1:1:1 }}</p>
+<header class="app-header">
+    <h1 class="app-title">E-Store</h1>
+</header>
+<main>
+    <app-cart [cart]="cart"></app-cart>
+    <app-product-list (addToCart)="handleAddToCart($event)"></app-product-list>
+</main>
