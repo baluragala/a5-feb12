@@ -5,16 +5,21 @@ import {
   Validators,
   FormBuilder
 } from "@angular/forms";
+import { ProductService } from "../product.service";
 
 @Component({
   selector: "app-add-product-reactive",
   templateUrl: "./add-product-reactive.component.html",
   styleUrls: ["./add-product-reactive.component.css"]
+  //providers: [{ provide: ProductService, useClass: ProductService }]
 })
 export class AddProductReactiveComponent implements OnInit {
   productForm: FormGroup;
   //private formBuilder;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: ProductService
+  ) {
     //this.formBuilder = formBuilder;
   }
 
@@ -40,6 +45,7 @@ export class AddProductReactiveComponent implements OnInit {
 
   onSubmit() {
     console.log(this.productForm.value);
+    this.service.addProduct(this.productForm.value);
   }
 
   load() {
