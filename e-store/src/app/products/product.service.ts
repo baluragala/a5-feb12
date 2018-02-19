@@ -42,4 +42,9 @@ export class ProductService {
   deleteProduct(id) {
     this.products = this.products.filter(p => id != p.id);
   }
+
+  getProductById(id) {
+    let p = this.products.find(p => p.id == id);
+    return p;
+  }
 }

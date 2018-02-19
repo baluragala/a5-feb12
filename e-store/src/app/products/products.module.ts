@@ -8,15 +8,23 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AddProductReactiveComponent } from "./add-product-reactive/add-product-reactive.component";
 import { ProductService } from "./product.service";
 import { Productv2Service } from "./productv2.service";
+import { ProductDetailComponent } from "./product-detail/product-detail.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild([])
+  ],
   declarations: [
     ProductListComponent,
     ProductListItemComponent,
     CartComponent,
     AddProductComponent,
-    AddProductReactiveComponent
+    AddProductReactiveComponent,
+    ProductDetailComponent
   ],
   exports: [
     ProductListComponent,
