@@ -1,0 +1,24 @@
+<div>
+  <fieldset>
+    <legend>Add Product</legend>
+    <form [formGroup]="productForm" (submit)="onSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" formControlName="title" />
+      </div>
+      <p style="color:red" *ngIf="productForm.controls.title.errors?.required">
+        Title is required</p>
+      <p style="color:red" *ngIf="productForm.controls.title.errors?.minlength">
+        Title must be minimum 5 chars</p>
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" name="price" formControlName="price" />
+      </div>
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="text" name="stock" formControlName="stock" />
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </fieldset>
+</div>
