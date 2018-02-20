@@ -17,6 +17,7 @@ import { ProductDetailComponent } from "./products/product-detail/product-detail
 import { AuthGuard } from "./auth.guard";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { CheckWorkGuard } from "./check-work.guard";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CheckWorkGuard } from "./check-work.guard";
   imports: [
     BrowserModule,
     ProductsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: "home", component: HomeComponent },
       {
