@@ -10,13 +10,29 @@ import { ProductService } from "./product.service";
 import { Productv2Service } from "./productv2.service";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
 import { RouterModule } from "@angular/router";
+import { ProductsHomeComponent } from "./products-home/products-home.component";
+import { CheckWorkGuard } from "../check-work.guard";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([
+      {
+        path: "products",
+        component: ProductsHomeComponent,
+        children: [
+          { path: "list", component: ProductListComponent },
+          {
+            path: "add",
+            component: AddProductReactiveComponent,
+            canDeactivate: [CheckWorkGuard]
+          },
+          { path: "detail/:pid", component: ProductDetailComponent }
+        ]
+      }
+    ])
   ],
   declarations: [
     ProductListComponent,
@@ -24,7 +40,8 @@ import { RouterModule } from "@angular/router";
     CartComponent,
     AddProductComponent,
     AddProductReactiveComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductsHomeComponent
   ],
   exports: [
     ProductListComponent,

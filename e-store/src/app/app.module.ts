@@ -14,6 +14,9 @@ import { HomeComponent } from "./home/home.component";
 import { ContactUsComponent } from "./contact-us/contact-us.component";
 import { AddProductReactiveComponent } from "./products/add-product-reactive/add-product-reactive.component";
 import { ProductDetailComponent } from "./products/product-detail/product-detail.component";
+import { AuthGuard } from "./auth.guard";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { CheckWorkGuard } from "./check-work.guard";
 
 @NgModule({
   declarations: [
@@ -22,20 +25,23 @@ import { ProductDetailComponent } from "./products/product-detail/product-detail
     FooterComponent,
     ToPowerPipe,
     HomeComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     ProductsModule,
     RouterModule.forRoot([
       { path: "home", component: HomeComponent },
-      { path: "products", component: ProductListComponent },
-      { path: "products/add", component: AddProductReactiveComponent },
-      { path: "contact-us", component: ContactUsComponent },
-      { path: "detail/:pid", component: ProductDetailComponent }
+      {
+        path: "contact-us",
+        component: ContactUsComponent,
+        canActivate: [AuthGuard]
+      },
+      { path: "**", component: PageNotFoundComponent, pathMatch: "full" }
     ])
   ],
-  providers: [],
+  providers: [AuthGuard, CheckWorkGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

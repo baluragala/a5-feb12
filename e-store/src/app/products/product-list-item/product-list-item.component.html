@@ -1,6 +1,6 @@
 <div class="product">
   <h2>
-    <a [routerLink]="['/detail',item.id]">{{item.title}}</a>
+    <a [routerLink]="['/products','detail',item.id]" [queryParams]="{token:'edr%67dmjd9ikj7733^hh'}">{{item.title}}</a>
   </h2>
   <h3>{{item.price|currency}}</h3>
   <p>stock available:{{item.stock}}</p>
