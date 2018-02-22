@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Inject } from "@angular/core";
-import { Product } from "../product-list-item/product-list-item.component";
 import { ProductService } from "../product.service";
+import { Product } from "../product.interface";
 
 @Component({
   selector: "app-product-list",
@@ -9,13 +9,15 @@ import { ProductService } from "../product.service";
 })
 export class ProductListComponent implements OnInit {
   @Output() addToCart: EventEmitter<Product> = new EventEmitter();
-  products;
+  products: Array<Product>;
   constructor(private service: ProductService, @Inject("FACTORY") key: string) {
     console.log(key);
   }
 
   ngOnInit() {
-    this.products = this.service.getProducts();
+    this.service
+      .getProducts()
+      .subscribe(products => (this.products = products));
   }
 
   handleAddToCart(product) {

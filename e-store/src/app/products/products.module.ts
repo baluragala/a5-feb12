@@ -12,12 +12,15 @@ import { ProductDetailComponent } from "./product-detail/product-detail.componen
 import { RouterModule } from "@angular/router";
 import { ProductsHomeComponent } from "./products-home/products-home.component";
 import { CheckWorkGuard } from "../check-work.guard";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AuthInterceptor } from "./auth.interceptor";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forChild([
       {
         path: "products",
@@ -51,6 +54,8 @@ import { CheckWorkGuard } from "../check-work.guard";
   ],
   providers: [
     { provide: ProductService, useClass: ProductService },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+
     {
       provide: "API_ENDPOINT",
       useValue: { api: "http://api.abc.com" }

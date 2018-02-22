@@ -34,18 +34,22 @@ export class AddProductReactiveComponent implements OnInit {
     //   stock: new FormControl()
     // });
     this.productForm = this.formBuilder.group({
-      title: [
-        "pixel",
+      productName: [
+        "",
         [Validators.required, Validators.minLength(5), Validators.maxLength(10)]
       ],
       price: "",
-      stock: ""
+      InTheBox: "",
+      modelNumber: ""
     });
   }
 
   onSubmit() {
     console.log(this.productForm.value);
-    this.service.addProduct(this.productForm.value);
+    this.service.addProduct(this.productForm.value).subscribe(product => {
+      console.log(product);
+      alert("Product Saved Successfully => " + JSON.stringify(product));
+    });
   }
 
   load() {

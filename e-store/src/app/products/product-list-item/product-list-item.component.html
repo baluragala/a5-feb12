@@ -1,8 +1,8 @@
 <div class="product">
   <h2>
-    <a [routerLink]="['/products','detail',item.id]" [queryParams]="{token:'edr%67dmjd9ikj7733^hh'}">{{item.title}}</a>
+    <a [routerLink]="['/products','detail',item.id]" [queryParams]="{token:'edr%67dmjd9ikj7733^hh'}">{{item.productName}}</a>
   </h2>
   <h3>{{item.price|currency}}</h3>
-  <p>stock available:{{item.stock}}</p>
+  <p>stock available:{{100}}</p>
   <button class="add-to-cart" (click)="onAddToCartClick(item)">Add to cart</button>
 </div>

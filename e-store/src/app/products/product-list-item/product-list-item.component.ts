@@ -1,11 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  stock: number;
-}
+import { Product } from "../product.interface";
+import { ProductService } from "../product.service";
 
 @Component({
   selector: "app-product-list-item",
@@ -15,12 +10,13 @@ export interface Product {
 export class ProductListItemComponent implements OnInit {
   @Input() item;
   @Output() addToCart: EventEmitter<Product> = new EventEmitter();
-  constructor() {}
+  constructor(private service: ProductService) {}
 
   ngOnInit() {}
 
   onAddToCartClick(item) {
     console.log(item);
-    this.addToCart.emit(item);
+    //this.addToCart.emit(item);
+    this.service.addToCart(item);
   }
 }

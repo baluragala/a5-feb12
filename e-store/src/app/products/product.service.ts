@@ -1,42 +1,30 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Product } from "./product.interface";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class ProductService {
-  products = [
-    {
-      id: 100,
-      title: "iphone",
-      price: 1000,
-      stock: 5
-    },
-    {
-      id: 101,
-      title: "pixel",
-      price: 900,
-      stock: 5
-    },
-    {
-      id: 102,
-      title: "note",
-      price: 500,
-      stock: 5
-    },
-    {
-      id: 103,
-      title: "edge",
-      price: 800,
-      stock: 5
-    }
-  ];
-  constructor() {}
+  products;
+  private cartSubject = new Subject<any>();
+  constructor(private http: HttpClient) {}
+
+  addToCart(product: Product) {
+    this.cartSubject.next(product);
+  }
+
+  getCart() {
+    return this.cartSubject.asObservable();
+  }
 
   getProducts() {
-    return this.products;
+    return this.http.get<Array<Product>>("http://localhost:4000/products");
   }
 
   addProduct(product) {
-    this.products.push(product);
-    console.log(this.products.length);
+    // this.products.push(product);
+    // console.log(this.products.length);
+    return this.http.post<Product>("http://localhost:4000/products", product);
   }
 
   deleteProduct(id) {
